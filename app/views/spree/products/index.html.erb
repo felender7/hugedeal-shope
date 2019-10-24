@@ -1,0 +1,84 @@
+
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      <div id="aside" class="col-md-3">
+        <!-- aside widget -->
+        <div class="aside">
+          <% if "spree/products" == params[:controller] && @taxon %>
+          <%= render partial: 'spree/shared/filters' %>
+          <% else %>
+          <%= render partial: 'spree/shared/taxonomies' %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /ASIDE -->
+      <!-- MAIN -->
+      <div id="main" class="col-md-9">
+        <!-- store top filter -->
+        <div class="store-filter clearfix">
+          <div class="pull-left">
+            <div class="row-filter">
+              <a href="#"><i class="fa fa-th-large"></i></a>
+              <a href="#" class="active"><i class="fa fa-bars"></i></a>
+            </div>
+            <div class="sort-filter">
+              <span class="text-uppercase">Sort By:</span>
+              <select class="input">
+                  <option value="0">Position</option>
+                  <option value="0">Price</option>
+                  <option value="0">Rating</option>
+                </select>
+              <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="page-filter">
+              <span class="text-uppercase">Show:</span>
+              <select class="input">
+                  <option value="0">10</option>
+                  <option value="1">20</option>
+                  <option value="2">30</option>
+                </select>
+            </div>
+            <ul class="store-pages">
+              <li><span class="text-uppercase">Page:</span></li>
+              <li class="active">1</li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /store top filter -->
+<hr>
+        <!-- STORE -->
+
+          <!-- row -->
+            <!-- Product Single -->
+              <% if params[:keywords] %>
+                <div data-hook="search_results">
+                  <% if @products.empty? %>
+                    <h6 class="search-results-title"><%= t('spree.no_products_found') %></h6>
+                  <% else %>
+                    <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
+                  <% end %>
+                </div>
+              <% else %>
+                  <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
+              <% end %>
+
+            <!-- /Product Single -->
+            <div class="clearfix visible-sm visible-xs"></div>
+
+          <!-- /row -->
+
+        <!-- /STORE -->
+      </div>
+      <!-- /MAIN -->
+    </div>  <!-- /row -->
+  </div>  <!-- /container -->
+</div>  <!-- /Section -->

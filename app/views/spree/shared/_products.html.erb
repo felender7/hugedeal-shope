@@ -1,0 +1,71 @@
+<%
+  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+  paginated_products ||= products
+%>
+
+<% content_for :head do %>
+  <% if paginated_products.respond_to?(:total_pages) %>
+    <%= rel_next_prev_link_tags paginated_products %>
+  <% end %>
+<% end %>
+
+<div data-hook="products_search_results_heading">
+  <% if products.empty? %>
+    <div data-hook="products_search_results_heading_no_results_found">
+      <%= t('spree.no_products_found') %>
+    </div>
+  <% elsif params.key?(:keywords) %>
+    <div data-hook="products_search_results_heading_results_found">
+      <h6 class="search-results-title"><%= t('spree.search_results', keywords: h(params[:keywords])) %></h6>
+    </div>
+  <% end %>
+</div>
+
+<% if products.any? %>
+
+  <div id="store" class="row" data-hook style="border: none";>
+    <% products.each do |product| %>
+      <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+      <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 col-xs-6 ">
+        <div class="product product-single">
+        <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
+          <div class="product-thumb">
+          <%= link_to url  do %>
+           <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+           <%end%>
+            <%= link_to(render('spree/shared/image', image: product.gallery.images.first, size: :small, itemprop: "image"), url, itemprop: 'url', class:"img-responsive center-product-image") %>
+            </div>
+          <div class="product-body">
+          <%= link_to truncate(product.name, length: 50), url, class: 'product-name', itemprop: "name", title: product.name %> <br>
+          <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <% if price = product.price_for(current_pricing_options) %>
+              <span class="product-price" itemprop="price" content="<%= price.to_d %>">
+                <%= price.to_html %>
+              </span>
+            <% end %>
+            <span itemprop="priceCurrency" content="<%= current_pricing_options.currency %>"></span>
+            <div class="product-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o empty"></i>
+            </div>
+          </span>
+          <div class="product-btns">
+            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+            <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>
+<hr>
+<% if paginated_products.respond_to?(:total_pages) %>
+  <%= paginate paginated_products %>
+<% end %>

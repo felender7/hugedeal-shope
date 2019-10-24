@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-lg-2">
+    <div data-hook="homepage_sidebar_navigation">
+
+      <%= render partial: 'spree/shared/taxonomies' %>
+      </div>
+    </div>
+
+  <div class="col-lg-10">
+    <div data-hook="homepage_products" class="mt-5">
+      <% cache(cache_key_for_products) do %>
+        <%= render partial: 'spree/shared/products', locals: { products: @products } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Dope Store</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsExample03">
+  <ul class="navbar-nav mr-auto">
+   <% @taxonomies.each do |taxonomy| %>
+   <li class="nav-item dropdown">
+    <%=link_to '#', data:{toggle: "dropdown"}, class:"nav-link dropdown-toggle",  id:"dropdown03" do %>
+      <%=taxonomy.name%>
+    <%end%>
+    <div class="dropdown-menu" aria-labelledby="dropdown03">
+      <%= nav_tree(taxonomy.root, @taxon, 1) %>
+      </div>
+   </li>
+   <%end%>
+   </ul>
+   <ul class="navbar-nav mr-right">
+     <li class="nav-item" id="link-to-cart" data-hook>
+       <noscript>
+         <%= link_to t('spree.cart'), spree.cart_path , class: "nav-link" %>
+       </noscript>
+       &nbsp;
+     </li>
+   </ul>
+     <script>Spree.fetch_cart('<%= j spree.cart_link_path %>')</script>
+  </div>
+</nav>
+
+
+.box.special .product-block-inner {border: none !important;}
+.box.special .product-carousel .product-block-inner { border-right: 1px solid #eeeeee !important;}
+
+
+
+
+.box.special .product-carousel .slider-item.last_item_tm .product-block-inner {
+	border-right: none !important;
+}

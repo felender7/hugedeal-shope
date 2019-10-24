@@ -1,0 +1,68 @@
+
+
+
+<!-- NAVIGATION -->
+<div id="navigation">
+  <!-- container -->
+  <div class="container">
+    <div id="responsive-nav">
+      <!-- category nav -->
+
+      <div class="category-nav">
+        <span class="category-header">Shop by Department <i class="fa fa-list"></i></span>
+      </div>
+
+      <!-- /category nav -->
+
+      <!-- menu nav -->
+      <div class="menu-nav">
+        <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+        <ul class="menu-list">
+      <% @taxonomies.each do |taxonomy| %>
+        <li class="dropdown mega-dropdown">
+          <%=link_to '#', data:{toggle: "dropdown"}, class:"dropdown-toggle",  id:"dropdown03" do %>
+            <%=taxonomy.name%> <i class="fa fa-caret-down"></i>
+          <%end%>
+            <div class="custom-menu">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="list-links">
+                    <li>
+                    <li> <%= nav_tree(taxonomy.root, @taxon, 1) %></li>
+
+                  </ul>
+                  <hr class="hidden-md hidden-lg">
+                </div>
+
+              </div>
+              <div class="row hidden-sm hidden-xs">
+                <div class="col-md-12">
+                  <hr>
+                    <%if taxonomy.name == "Brand"%>
+                  <a class="banner banner-1" href="#">
+                   <%=image_tag("banner05.jpg")%>
+                    <div class="banner-caption text-center">
+                      <h2 class="white-color">NEW COLLECTION</h2>
+                      <h3 class="white-color font-weak">HOT DEAL</h3>
+                    </div>
+                  </a>
+                  <%else%>
+                  Shit
+                  <%end%>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </li>
+        <%end%>
+        <li><a href="#"> Clearance Sales</a></li>
+        <li><a href="#">Just Landed</a></li>
+        </ul>
+      </div>
+      <!-- menu nav -->
+    </div>
+  </div>
+  <!-- /container -->
+</div>
+<!-- /NAVIGATION -->

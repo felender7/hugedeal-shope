@@ -1,0 +1,21 @@
+<%# no need for thumbnails unless there is more than one image %>
+<% if @product.gallery.images.size > 1 %>
+  <div id="product-thumbnails" class="thumbnails inline" data-hook>
+
+    <% @product.gallery.images.each do |image| %>
+      <% next if image.viewable_id != @product.master.id %>
+      <span class='tmb-all tmb-<%= image.viewable_id %> '>
+        <%= link_to(image_tag(image.url(:mini), class: "thumbnails"), image.url(:product)) %>
+      </span>
+    <% end %>
+
+    <% if @product.has_variants? %>
+      <% @product.gallery.images.each do |image| %>
+        <% next if image.viewable_id == @product.master.id %>
+        <span class='vtmb tmb-<%= image.viewable_id %>'>
+          <%= link_to(image_tag(image.url(:mini), class: "thumbnail"), image.url(:product)) %>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

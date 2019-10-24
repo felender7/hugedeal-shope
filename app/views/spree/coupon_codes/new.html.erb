@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-lg-4">
+    <%= form_tag order_coupon_codes_path(@order), method: :post do %>
+    <div class="input-group">
+      <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 , class: " form-control" %>
+      <span class="input-group-btn">
+        <%= submit_tag t("spree.apply_code"), class: "btn btn-default " %>
+      </span>
+
+    </div><!-- /input-group -->
+    <% end %>
+  </div>
+</div>

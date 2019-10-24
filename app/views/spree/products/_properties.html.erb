@@ -1,0 +1,9 @@
+<% unless @product_properties.empty? %>
+<h6 class="text-uppercas"><%= t('spree.properties')%></h6>
+<ul class="size-option">
+  <% @product_properties.each do |product_property| %>
+  <li class="active"><strong><%= product_property.property.presentation %></strong></li>
+  <li><%= product_property.value %></li>
+  <% end %>
+</ul>
+<% end %>

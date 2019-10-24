@@ -1,0 +1,15 @@
+#= require rails-ujs
+#= require spree/frontend/jquery.min
+#= require bootstrap-sprockets
+#= require spree
+#= require activestorage
+#= require turbolinks
+#= require spree/frontend/checkout
+#= require spree/frontend/product
+#= require spree/frontend/cart
+#= require spree/frontend/locale_selector
+#= require spree/frontend/main
+#= require spree/frontend/nouislider.min
+#= require spree/frontend/slick.min
+#= require spree/frontend/owl.carousel.min
+#= require spree/frontend/jquery.zoom.min
