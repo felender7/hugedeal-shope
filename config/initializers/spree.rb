@@ -5,7 +5,14 @@ Spree.config do |config|
   # Core:
 
   # Default currency for new sites
-  config.currency = "USD"
+  # Check if table already exists
+  if ActiveRecord::Base.connection.tables.include?('spree_countries')
+    Spree.config do |config|
+    config.currency = 'ZAR'
+    country = Spree::Country.find_by_name('South Africa')
+    config.default_country_id = country.id if country.present?
+    end
+  end
 
   # from address for transactional emails
   config.mails_from = "store@example.com"
