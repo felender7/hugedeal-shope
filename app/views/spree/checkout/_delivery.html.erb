@@ -1,16 +1,20 @@
 <fieldset id='shipping_method' data-hook>
-  <legend align="center"><%= t('spree.delivery') %></legend>
+  <div class="section-title">
+    <h4><%= t('spree.delivery') %></h4>
+  </div>
   <div class="inner" data-hook="shipping_method_inner">
     <div id="methods">
       <%= form.fields_for :shipments do |ship_form| %>
+      <div class='alert alert-info-notice'>
+        <div class="shipment ">
+          <p class="stock-location" data-hook="stock-location">
+            <%= t('spree.package_from'.upcase) %> :
+            <strong class="stock-location-name" data-hook="stock-location-name" style="color: #fff;"><%= ship_form.object.stock_location.name.upcase %></strong>
 
-        <div class="shipment">
-          <h3 class="stock-location" data-hook="stock-location">
-            <%= t('spree.package_from') %>
-            <strong class="stock-location-name" data-hook="stock-location-name"><%= ship_form.object.stock_location.name %></strong>
-          </h3>
-
-          <table class="stock-contents" data-hook="stock-contents">
+          </p>
+          <hr>
+        </div>
+          <table class="table" data-hook="stock-contents">
             <colgroup>
               <col style="width: 10%;" />
               <col style="width: 60%;" />
@@ -27,9 +31,7 @@
               <% ship_form.object.manifest.each do |item| %>
                 <tr class="stock-item">
                   <td class="item-image">
-                    <%= render 'spree/shared/image',
-                      image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first),
-                      size: :mini %>
+                    <%= render 'spree/shared/image', image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first), size: :mini  %>
                   </td>
                   <td class="item-name"><%= item.variant.name %></td>
                   <td class="item-qty"><%= item.quantity %></td>
@@ -104,5 +106,5 @@
 <br />
 
 <div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t('spree.save_and_continue'), class: 'continue button primary' %>
+  <%= submit_tag t('spree.save_and_continue'), class: 'continue button primary-btn' %>
 </div>

@@ -21,13 +21,14 @@
           <%= flash_messages %>
           <%= yield %>
         </div>
-
+          <%if controller.devise_controller? %>
+          <%render='spree/base/devise'%>
+          <%else%>
         <%= yield :templates %>
 
       </div>
-
-      <%= render partial: 'spree/shared/footer' %>
-
+       <%= render partial: 'spree/shared/footer' %>
+       <%end%>
   </body>
 
 </html>

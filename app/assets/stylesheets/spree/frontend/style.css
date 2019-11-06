@@ -1839,3 +1839,51 @@ textarea.input {
 .taxons-list{
   margin-top: 20px;
 }
+
+
+.alert-error{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+.alert-alert{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-success{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+.alert-notice{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+.alert-info-notice {
+    color: #fff;
+    background-color: #2d3436;
+    border-color: #2d3436;
+}
+
+.mb-5 {
+    margin-bottom: 3rem!important;
+}
+
+.confirmation-card {
+    padding: 38px;
+    background: #f1f6f7;
+}
+
+.alert-info-notice h6{
+  color: #fff !important
+}
+.alert-info-notice a{
+  color: #fff !important
+}

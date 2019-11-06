@@ -1,0 +1,15 @@
+<% @oder.each do |item| %>
+<div class="product product-widget">
+  <div class="product-thumb">
+    <%= render 'spree/shared/image',
+    image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first),
+    size: :mini %>
+  </div>
+  <div class="product-body">
+    <h3 class="product-price"><%= display_price(item.variant) %><span class="qty">x  <%= item.quantity %></span></h3>
+    <h2 class="product-name"><a href="#"><%= item.variant.name %></a></h2>
+
+  </div>
+  <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+</div>
+<% end %>
