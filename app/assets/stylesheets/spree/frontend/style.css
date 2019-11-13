@@ -1846,6 +1846,8 @@ textarea.input {
   border-color: #eed3d7;
   color: #b94a48;
   text-align: left;
+  margin-top: -15px;
+border-radius: 0px;
 }
 .alert-alert{
   background-color: #f2dede;
@@ -1859,6 +1861,8 @@ textarea.input {
   border-color: #d6e9c6;
   color: #468847;
   text-align: left;
+  margin-top: -15px;
+border-radius: 0px;
 }
 .alert-notice{
   background-color: #dff0d8;
@@ -1886,4 +1890,9 @@ textarea.input {
 }
 .alert-info-notice a{
   color: #fff !important
+}
+
+
+.border-top-reviews{
+  border-top: 3px solid #2980b9;
 }

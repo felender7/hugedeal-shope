@@ -1,3 +1,4 @@
+
 <%
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
@@ -27,7 +28,7 @@
     <% products.each do |product| %>
       <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
       <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 col-xs-6 ">
-        <div class="product product-single">
+        <div class="product product-single card card-signin flex-row  border-top-reviews" style="padding: 5px;">
         <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
           <div class="product-thumb">
           <%= link_to url  do %>

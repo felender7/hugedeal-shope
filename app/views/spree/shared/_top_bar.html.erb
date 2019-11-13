@@ -3,9 +3,9 @@
 <div id="top-header">
   <div class="container">
     <div class="pull-left">
-      <span>Good luck with shopping. Call us free 24/7 : (011) 123-4565  <%if current_spree_user%>
-      |<%=current_spree_user.email%>
-      <%end%> </span>
+      <span>Good luck with shopping. Call us free 24/7 : (011) 123-4565
+
+       </span>
     </div>
     <div class="pull-right">
       <ul class="header-top-links">
@@ -45,8 +45,16 @@
             </div>
             <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
           </div>
-          <a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+            <%if current_spree_user%>
+          <a href="#" class="text-uppercase">Logout</a>
+           <%else%>
+           <a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+           <%end%>
           <ul class="custom-menu">
+            <li>  <%if current_spree_user%>
+              <a href="#" class="text-uppercase" ><small><%=current_spree_user.email%></small></a>
+              <%end%></li>
+              <hr>
             <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
             <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
             <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
@@ -57,7 +65,7 @@
             <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
             <%end%>
 
-            <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+              <%if !current_spree_user%><li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li><%end%>
           </ul>
         </li>
         <!-- /Account -->
